@@ -8,6 +8,49 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
 
+        <TextBlock x:Name="stopwatch" Grid.Row="1" Text="00 00 00" TextAlignment="Center" VerticalAlignment="Center" FontSize="80" />
+        <TextBlock x:Name="period" Grid.Row="2" Text="1T" TextAlignment="Center" VerticalAlignment="Center" FontSize="25" />
+        
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="50*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="120" />
+                    <RowDefinition Height="20*" />
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="teamA_name" Grid.Row="0" Text="TEAM A" BorderThickness="0" TextAlignment="Center" HorizontalContentAlignment="Center" />
+                <TextBlock x:Name="teamA_score" Grid.Row="1" Text="99" FontSize="80" TextAlignment="Center" />
+                
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="120" />
+                    <RowDefinition Height="20*" />
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="teamB_name" Grid.Row="0" Text="TEAM B" BorderThickness="0" TextAlignment="Center" HorizontalContentAlignment="Center" />
+                <TextBlock x:Name="teamB_score" Grid.Row="1" Text="99" FontSize="80" TextAlignment="Center" />
+
+            </Grid>
+
+        </Grid>
+        
     </Grid>
 </Page>
