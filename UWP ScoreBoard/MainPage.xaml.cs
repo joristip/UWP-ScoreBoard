@@ -57,6 +57,9 @@ namespace UWP_ScoreBoard
             // do some work not connected with UI
             stopwatch.Text = _stopwatch.Elapsed.ToString();
 
+
+            // teste 2
+
             //await Window.Current.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
             //    () => {
             //        stopwatch.Text = _stopwatch.Elapsed.ToString();
