@@ -7,6 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -28,6 +29,8 @@ namespace UWP_ScoreBoard
         Stopwatch _stopwatch = new Stopwatch();
         Timer _timer;
 
+        string _mask = "00 00 00";
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -39,31 +42,27 @@ namespace UWP_ScoreBoard
             if (_stopwatch.IsRunning)
             {
                 _stopwatch.Stop();
+                _timer.Dispose();
             }
             else
             {
                 _stopwatch.Start();
-
-                _timer = new Timer(updateTime, null, 1500, Timeout.Infinite);
-                
-                //stopwatch.Text = _stopwatch.Elapsed.ToString();
-
+                _timer = new Timer(updateTime, null, 0, 1);
             }
 
         }
 
         private async void updateTime(object state)
         {
-            // do some work not connected with UI
-            stopwatch.Text = _stopwatch.Elapsed.ToString();
-
-
-            // teste 2
-
-            //await Window.Current.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
-            //    () => {
-            //        stopwatch.Text = _stopwatch.Elapsed.ToString();
-            //});
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                () =>
+                    {
+                        _mask = String.Format("{0:00} {1:00} {2:00}", _stopwatch.Elapsed.Minutes, _stopwatch.Elapsed.Seconds, _stopwatch.Elapsed.Milliseconds / 10);// + " " + _stopwatch.Elapsed.ToString()
+                        stopwatchLbl.Text = _mask;
+                    }
+                );
+       
         }
+
     }
 }
