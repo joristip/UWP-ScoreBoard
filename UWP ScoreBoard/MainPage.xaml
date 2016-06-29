@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="stopwatchLbl" Grid.Row="1" Text="00 00 00" TextAlignment="Center" VerticalAlignment="Center" FontSize="80"  Tapped="stopwatch_Tapped" />
-        <TextBlock x:Name="period" Grid.Row="2" Text="1T" TextAlignment="Center" VerticalAlignment="Center" FontSize="25" />
+        <TextBlock x:Name="periodLbl" Grid.Row="2" Text="1T" TextAlignment="Center" VerticalAlignment="Center" FontSize="25" />
         
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>

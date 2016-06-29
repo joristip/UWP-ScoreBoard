@@ -28,93 +28,65 @@ namespace UWP_ScoreBoard
     {
         Stopwatch _stopwatch = new Stopwatch();
         Timer _timer;
-
-        Windows.UI.Input.GestureRecognizer gr = new Windows.UI.Input.GestureRecognizer();
+        
+        int _yStart, _yFinish;
 
         public MainPage()
         {
             this.InitializeComponent();
 
-            this.PointerPressed += MainPage_PointerPressed;
-            this.PointerMoved += MainPage_PointerMoved;
-            this.PointerReleased += MainPage_PointerReleased;
-            gr.CrossSliding += gr_CrossSliding;
-            gr.Dragging += gr_Dragging;
-            gr.Holding += gr_Holding;
-            gr.ManipulationCompleted += gr_ManipulationCompleted;
-            gr.ManipulationInertiaStarting += gr_ManipulationInertiaStarting;
-            gr.ManipulationStarted += gr_ManipulationStarted;
-            gr.ManipulationUpdated += gr_ManipulationUpdated;
-            gr.RightTapped += gr_RightTapped;
-            gr.Tapped += gr_Tapped;
-            gr.GestureSettings = Windows.UI.Input.GestureSettings.ManipulationRotate | Windows.UI.Input.GestureSettings.ManipulationTranslateX | Windows.UI.Input.GestureSettings.ManipulationTranslateY |
-            Windows.UI.Input.GestureSettings.ManipulationScale | Windows.UI.Input.GestureSettings.ManipulationRotateInertia | Windows.UI.Input.GestureSettings.ManipulationScaleInertia |
-            Windows.UI.Input.GestureSettings.ManipulationTranslateInertia | Windows.UI.Input.GestureSettings.Tap;
+            setupTextBlockManipulation();
+
+
         }
 
-        void MainPage_PointerReleased(object sender, PointerRoutedEventArgs e)
+        private void setupTextBlockManipulation()
         {
-            var ps = e.GetIntermediatePoints(null);
-            if (ps != null && ps.Count > 0)
+            teamA_score.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
+            teamA_score.ManipulationStarted += (s, e) => _yStart = (int)e.Position.Y;
+            teamA_score.ManipulationCompleted += (s, e) =>
             {
-                gr.ProcessUpEvent(ps[0]);
-                e.Handled = true;
-                gr.CompleteGesture();
-            }
-        }
+                _yFinish = (int)e.Position.Y;
+                if (_yStart < _yFinish)
+                {
+                    decreaseValue(((TextBlock)s));
+                };
+            };
 
-        void MainPage_PointerMoved(object sender, PointerRoutedEventArgs e)
-        {
-            gr.ProcessMoveEvents(e.GetIntermediatePoints(null));
-            e.Handled = true;
-        }
-
-        void MainPage_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            var ps = e.GetIntermediatePoints(null);
-            if (ps != null && ps.Count > 0)
+            teamB_score.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
+            teamB_score.ManipulationStarted += (s, e) => _yStart = (int)e.Position.Y;
+            teamB_score.ManipulationCompleted += (s, e) =>
             {
-                gr.ProcessDownEvent(ps[0]);
-                e.Handled = true;
-            }
-        }
+                _yFinish = (int)e.Position.Y;
+                if (_yStart < _yFinish)
+                {
+                    decreaseValue(((TextBlock)s));
+                };
+            };
 
-        void gr_Tapped(Windows.UI.Input.GestureRecognizer sender, Windows.UI.Input.TappedEventArgs args)
-        {
-            Debug.WriteLine("gr_Tapped");
+            teamA_fouls.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
+            teamA_fouls.ManipulationStarted += (s, e) => _yStart = (int)e.Position.Y;
+            teamA_fouls.ManipulationCompleted += (s, e) =>
+            {
+                _yFinish = (int)e.Position.Y;
+                if (_yStart < _yFinish)
+                {
+                    decreaseValue(((TextBlock)s));
+                };
+            };
+
+            teamB_fouls.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
+            teamB_fouls.ManipulationStarted += (s, e) => _yStart = (int)e.Position.Y;
+            teamB_fouls.ManipulationCompleted += (s, e) =>
+            {
+                _yFinish = (int)e.Position.Y;
+                if (_yStart < _yFinish)
+                {
+                    decreaseValue(((TextBlock)s));
+                };
+            };
         }
-        void gr_RightTapped(Windows.UI.Input.GestureRecognizer sender, Windows.UI.Input.RightTappedEventArgs args)
-        {
-            Debug.WriteLine("gr_RightTapped");
-        }
-        void gr_Holding(Windows.UI.Input.GestureRecognizer sender, Windows.UI.Input.HoldingEventArgs args)
-        {
-            Debug.WriteLine("gr_Holding");
-        }
-        void gr_Dragging(Windows.UI.Input.GestureRecognizer sender, Windows.UI.Input.DraggingEventArgs args)
-        {
-            Debug.WriteLine("gr_Dragging");
-        }
-        void gr_CrossSliding(Windows.UI.Input.GestureRecognizer sender, Windows.UI.Input.CrossSlidingEventArgs args)
-        {
-            Debug.WriteLine("gr_CrossSliding");
-        }
-        void gr_ManipulationUpdated(Windows.UI.Input.GestureRecognizer sender, Windows.UI.Input.ManipulationUpdatedEventArgs args)
-        {
-            Debug.WriteLine("gr_ManipulationUpdated");
-        }
-        void gr_ManipulationStarted(Windows.UI.Input.GestureRecognizer sender, Windows.UI.Input.ManipulationStartedEventArgs args)
-        {
-            Debug.WriteLine("gr_ManipulationStarted");
-        }
-        void gr_ManipulationCompleted(Windows.UI.Input.GestureRecognizer sender, Windows.UI.Input.ManipulationCompletedEventArgs args)
-        {
-            Debug.WriteLine("gr_ManipulationCompleted");
-        }
-        void gr_ManipulationInertiaStarting(Windows.UI.Input.GestureRecognizer sender, Windows.UI.Input.ManipulationInertiaStartingEventArgs args)
-        {
-            Debug.WriteLine("gr_ManipulationInertiaStarting");
-        }
+        
 
         private void stopwatch_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -145,16 +117,29 @@ namespace UWP_ScoreBoard
 
         private void textBlock_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            increaseScore((TextBlock) sender);
+            increaseValue((TextBlock) sender);
         }
 
 
-        void increaseScore(TextBlock scoreLbl)
+        void increaseValue(TextBlock scoreLbl)
         {
             int newValue = Convert.ToInt32(scoreLbl.Text) + 1;
 
             scoreLbl.Text = newValue.ToString();
             
+        }
+
+        void decreaseValue(TextBlock scoreLbl)
+        {
+            if (Convert.ToInt32(scoreLbl.Text) <= 0)
+            {
+                return;
+            }
+
+            int newValue = Convert.ToInt32(scoreLbl.Text) - 1;
+
+            scoreLbl.Text = newValue.ToString();
+
         }
     }
 }
