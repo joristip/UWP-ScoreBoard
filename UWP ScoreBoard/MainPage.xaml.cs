@@ -28,16 +28,15 @@ namespace UWP_ScoreBoard
     {
         Stopwatch _stopwatch = new Stopwatch();
         Timer _timer;
-        
-        int _yStart, _yFinish;
 
+        int currentPeriod = 1;
+        int _yStart, _yFinish;
+        
         public MainPage()
         {
             this.InitializeComponent();
 
             setupTextBlockManipulation();
-
-
         }
 
         private void setupTextBlockManipulation()
@@ -109,7 +108,11 @@ namespace UWP_ScoreBoard
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                 () =>
                     {
+
                         stopwatchLbl.Text = String.Format("{0:00} {1:00} {2:00}", _stopwatch.Elapsed.Minutes, _stopwatch.Elapsed.Seconds, _stopwatch.Elapsed.Milliseconds / 10);
+
+                        //stopwatchLbl.Text = "00 00 00";
+                        
                     }
                 );
        
@@ -127,6 +130,46 @@ namespace UWP_ScoreBoard
 
             scoreLbl.Text = newValue.ToString();
             
+        }
+
+        private void periodLbl_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (currentPeriod == 1)
+            {
+                periodLbl.Text = "2T";
+                currentPeriod++;
+
+                _stopwatch.Reset();
+                _stopwatch.Stop();
+
+                if (_timer != null)
+                {
+                    _timer.Dispose();
+                }
+
+
+                stopwatchLbl.Text = "00 00 00";
+            }
+            else
+            {
+                periodLbl.Text = "1T";
+                currentPeriod = 1;
+
+                _stopwatch.Reset();
+                _stopwatch.Stop();
+
+                if (_timer != null)
+                {
+                    _timer.Dispose();
+                }
+
+                teamA_score.Text = "0";
+                teamB_score.Text = "0";
+                teamA_fouls.Text = "0";
+                teamB_fouls.Text = "0";
+
+                stopwatchLbl.Text = "00 00 00";
+            }
         }
 
         void decreaseValue(TextBlock scoreLbl)
