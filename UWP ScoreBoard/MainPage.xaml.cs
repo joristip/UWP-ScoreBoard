@@ -31,14 +31,16 @@ namespace UWP_ScoreBoard
 
         int currentPeriod = 1;
         int _yStart, _yFinish;
-        
+
+        bool bAfterLoaded = false;
+
         public MainPage()
         {
             this.InitializeComponent();
 
             setupTextBlockManipulation();
         }
-
+        
         private void setupTextBlockManipulation()
         {
             teamA_score.ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;

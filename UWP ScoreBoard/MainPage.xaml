@@ -36,8 +36,8 @@
                     <RowDefinition Height="20*" />
                 </Grid.RowDefinitions>
 
-                <TextBox x:Name="teamA_name" Grid.Row="0" Text="TEAM A" FontSize="25" BorderThickness="0" TextAlignment="Center" HorizontalContentAlignment="Center" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" Background="{x:Null}" />
-                <TextBlock x:Name="teamA_score" Grid.Row="1" Text="0" FontSize="80" TextAlignment="Center" Tapped="textBlock_Tapped" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" />
+                <TextBox x:Name="teamA_name" Grid.Row="0" Text="TEAM A" FontSize="25" BorderThickness="0" TextAlignment="Center" HorizontalContentAlignment="Center" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" Background="{x:Null}" TabIndex="-1" UseSystemFocusVisuals="True" />
+                <TextBlock x:Name="teamA_score" Grid.Row="1" Text="0" FontSize="80" TextAlignment="Center" Tapped="textBlock_Tapped" MaxWidth="200" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" />
 
                 <TextBlock x:Name="teamA_foulsName" Grid.Row="3" Text="FOULS" FontSize="18" VerticalAlignment="Center" TextAlignment="Center" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" />
                 <TextBlock x:Name="teamA_fouls" Grid.Row="4" Text="0" FontSize="55"  VerticalAlignment="Center" TextAlignment="Center" Tapped="textBlock_Tapped" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" />
@@ -54,8 +54,8 @@
                     <RowDefinition Height="20*" />
                 </Grid.RowDefinitions>
 
-                <TextBox x:Name="teamB_name" Grid.Row="0" Text="TEAM B"  FontSize="25" BorderThickness="0" TextAlignment="Center" HorizontalContentAlignment="Center" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" BorderBrush="Black" Background="{x:Null}" />
-                <TextBlock x:Name="teamB_score" Grid.Row="1" Text="0" FontSize="80" TextAlignment="Center" Tapped="textBlock_Tapped" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" />
+                <TextBox x:Name="teamB_name" Grid.Row="0" Text="TEAM B"  FontSize="25" BorderThickness="0" TextAlignment="Center" HorizontalContentAlignment="Center" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" BorderBrush="Black" Background="{x:Null}" TabIndex="1" />
+                <TextBlock x:Name="teamB_score" Grid.Row="1" Text="0" FontSize="80" TextAlignment="Center" Tapped="textBlock_Tapped" MaxWidth="200" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" />
 
                 <TextBlock x:Name="teamB_foulsName" Grid.Row="3" Text="FOULS" FontSize="18" VerticalAlignment="Center" TextAlignment="Center" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" />
                 <TextBlock x:Name="teamB_fouls" Grid.Row="4" Text="0" FontSize="55"  VerticalAlignment="Center" TextAlignment="Center" Tapped="textBlock_Tapped" FontFamily="../Assets/Fonts/ElectronicHighwaySign.ttf#Electronic Highway Sign" Foreground="#FFFA1E00" />
